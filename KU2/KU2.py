@@ -23,12 +23,15 @@ P=3
 dw=d=24e-3 #m
 dh=d2=22.051e-3
 d1=20.752e-3
+D_a =L_k+dw
+x=(L_k/D_a)**(1/5)
 # =============================================================================
 
 g=9.82 #m/s^2
 Fz=(hydrosetvikt+axelvikt)*g
 Fskruv=Fz/12
 Askruv=pi*d**2/4
+Agänga=pi/4*(dw**2-dh**2)+pi/8*(D_a-dw)*dw*((x+1)**2-1)
 
 #kraftdata=pd.read_excel("file://H62_UniformFeedLoad.xlsx","H62_data",0,"Fz1",1)
 #Varuns värden
@@ -36,9 +39,14 @@ Askruv=pi*d**2/4
 E=205*1e9 #Pa = 205 GPa
 # =============================================================================
 c_s=E*Askruv/L_k
+c_k=E*Agänga/L_k
 D_a=L_k+dw
 x=(L_k/D_a)**(1/5)
 Aekv=pi/4*(dw**2-dh**2)+pi/8*(D_a-dw)*dw*((x+1)**2-1)
+δ_s=Fskruv/c_s
+δ_k=Fk/c_k
+
+
 
 c_k=Aekv*E/L_k
 ck_lutning=np.arctan(c_k)
@@ -46,6 +54,10 @@ cs_lutning=np.arctan(c_s)
 Z=(0,10,1001)
 
 for z in Z:
-    
-M_tot=Fax*(0.16*P+0.58*µ*d2+µ_b*r_m)
-print(M_tot)
+    pass
+# =============================================================================
+# M_tot=Fax*(0.16*P+0.58*µ*d2+µ_b*r_m)
+# print(M_tot)
+# =============================================================================
+
+plt.plot
